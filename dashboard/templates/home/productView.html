@@ -1,0 +1,87 @@
+{% load static %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product View</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        .product-image {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .home-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .home-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .home-button a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product Details</h1>
+        <div class="product-details">
+            <label>Name:</label>
+            {{ cruds.name }} <br><br>
+
+            <label>Price:</label>
+            ₹{{ cruds.price|floatformat:2 }} <br><br>
+
+            <label>Category:</label>
+            {{ cruds.category_name.name }} <br><br>
+
+            <label>Description:</label>
+            {{ cruds.description }} <br><br>
+
+
+            {% for i in cruds.images.all %}
+            <div class="product-image">
+                <label>Image:</label><br>
+                <img src="{{ i.image.url }}" alt="Product Image" width="300px" >
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="home-button">
+            <a href="/products/">Back to Home Page</a>
+        </div>
+    </div>
+</body>
+</html>

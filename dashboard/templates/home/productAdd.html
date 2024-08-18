@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Add</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Sets a nice clean font for your form */
+            background-color: #f4f4f4; /* Light grey background for slight contrast */
+            padding: 20px; /* Adds padding around the content in the body */
+        }
+
+        form {
+            background: white; /* Makes the form stand out against the grey background */
+            padding: 20px;
+            border: 1px solid #ccc;
+            max-width: 500px; /* Limits the form width and centers it */
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Adds a subtle shadow to the form */
+        }
+
+        label {
+            font-weight: bold; /* Makes labels bold */
+            display: block; /* Each label on a new line */
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        select {
+            width: calc(100% - 22px); /* Full width while accounting for padding and border */
+            padding: 10px;
+            margin-top: 5px;
+        }
+
+        input[type="submit"],
+        .home-button a {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        input[type="submit"]:hover,
+        .home-button a:hover {
+            background-color: #0056b3;
+        }
+
+        .home-button {
+            text-align: center; /* Centers the button/link */
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="{% url 'productAdd' %}"  enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="name">
+        <br>
+        <label for="price">Price: </label>
+        <input type="text" id="price" name="price">
+        <br>
+        <label for="category">Category: </label>
+        <select name="category" id="category">
+            {% for crud in cruds %}
+            <option value="{{ crud.id }}">{{ crud.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="description">Description: </label>
+        <input type="text" id="description" name="description">
+        <br>
+        <label for="image">Add Image: </label>
+        <input type="file" id="image" name="image" multiple>
+        <br>
+        <input type="submit" value="Add Product">
+    </form>
+    <div class="home-button">
+        <a href="/products/">Home Page</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Maps {% endblock title %}
+
+{% block content %}
+
+    <!-- Header -->
+    <div class="header bg-primary pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+<!--            <div class="col-lg-6 col-7">-->
+<!--              <h6 class="h2 text-white d-inline-block mb-0">Google maps</h6>-->
+<!--              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">-->
+<!--                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">-->
+<!--                  <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>-->
+<!--                  <li class="breadcrumb-item"><a href="#">Maps</a></li>-->
+<!--                  <li class="breadcrumb-item active" aria-current="page">Google maps</li>-->
+<!--                </ol>-->
+<!--              </nav>-->
+<!--            </div>-->
+
+            <div class="col-lg-6 col-5 text-right">
+              <a href="add/" class="btn btn-sm btn-neutral">Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     <div>
+       <h2>Products</h2>
+     </div>
+<div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+
+                <tr>
+                  <th scope="col" class="sort" data-sort="Category_name">Category Name</th>
+                  <th scope="col" class="sort" data-sort="name">Name</th>
+                  <th scope="col" class="sort" data-sort="price">Price</th>
+                    <th scope="col" class="sort" data-sort="description">Description</th>
+                    <th scope="col" class="sort" data-sort="Image">Image</th>
+                    <th scope="col" class="sort" data-sort="Operations">Operations</th>
+<!--                  <th scope="col">Users</th>-->
+<!--                  <th scope="col" class="sort" data-sort="completion">Completion</th>-->
+<!--                  <th scope="col"></th>-->
+                </tr>
+              </thead>
+              <tbody class="list">
+              {% for crud in page_obj %}
+
+                <tr>
+                    <th scope="row">
+                    <div class="media align-items-center">
+<!--                      <a href="#" class="avatar rounded-circle mr-3">-->
+<!--                        <img alt="Image placeholder" src="/static/assets/img/theme/bootstrap.jpg">-->
+<!--                      </a>-->
+                      <div class="media-body">
+                        <span class="name mb-0 text-sm">{{crud.category_name.name}}</span>
+                      </div>
+                    </div>
+                  </th>
+                  <th scope="row">
+                    <div class="media align-items-center">
+<!--                      <a href="#" class="avatar rounded-circle mr-3">-->
+<!--                        <img alt="Image placeholder" src="/static/assets/img/theme/bootstrap.jpg">-->
+<!--                      </a>-->
+                      <div class="media-body">
+                        <span class="name mb-0 text-sm">{{crud.name}}</span>
+                      </div>
+                    </div>
+                  </th>
+                    <th scope="row">
+                    <div class="media align-items-center">
+<!--                      <a href="#" class="avatar rounded-circle mr-3">-->
+<!--                        <img alt="Image placeholder" src="/static/assets/img/theme/bootstrap.jpg">-->
+<!--                      </a>-->
+                      <div class="media-body">
+                        <span class="name mb-0 text-sm">{{crud.price}}</span>
+                      </div>
+                    </div>
+                  </th>
+                    <th scope="row">
+                    <div class="media align-items-center">
+<!--                      <a href="#" class="avatar rounded-circle mr-3">-->
+<!--                        <img alt="Image placeholder" src="/static/assets/img/theme/bootstrap.jpg">-->
+<!--                      </a>-->
+                      <div class="media-body">
+                        <span class="name mb-0 text-sm">{{crud.description}}</span>
+                      </div>
+                    </div>
+                  </th>
+                    <th scope="row">
+                    <div class="media align-items-center">
+<!--                      <a href="#" class="avatar rounded-circle mr-3">-->
+<!--                        <img alt="Image placeholder" src="/static/assets/img/theme/bootstrap.jpg">-->
+<!--                      </a>-->
+                      <div class="media-body">
+                          {{ crud.images.all|length }}
+
+                        <span class="name mb-0 text-sm"></span>
+                      </div>
+                    </div>
+
+                  </th>
+                  <td class="budget">
+                      <div class="col-lg-6 col-5 text-right">
+            <a href="productUpdate/{{crud.id}}" class="btn btn-sm btn-neutral">Update</a>
+            <a href="productDelete/{{crud.id}}" class="btn btn-sm btn-neutral">Delete</a>
+            <a href="productView/{{crud.id}}" class="btn btn-sm btn-neutral">View</a>
+          </div>
+                  </td>
+
+{% endfor %}
+
+                    {% include 'home/pagination.html' %}
+    <!-- Page content -->
+<!--    <div class="container-fluid mt&#45;&#45;6">-->
+<!--      <div class="row">-->
+<!--        <div class="col">-->
+<!--          <div class="card border-0">-->
+<!--            <div id="map-default" class="map-canvas" data-lat="40.748817" data-lng="-73.985428" style="height: 600px;"></div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      -->
+<!--    </div>-->
+
+
+
+{% endblock content %}
+
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>-->
+
+{% endblock javascripts %}
